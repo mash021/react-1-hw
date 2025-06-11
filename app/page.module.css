@@ -3,7 +3,7 @@
 }
 
 .hero {
-  background-image: url('/home/background-home-desktop.jpg');
+  background-image: url("/home/background-home-desktop.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -37,7 +37,6 @@ p.heroJumbo {
   font-weight: 100;
 }
 
-
 .exploreButton {
   height: 250px;
   width: 250px;
@@ -47,4 +46,52 @@ p.heroJumbo {
   font-size: 30px;
   font-weight: 200;
   letter-spacing: 4px;
+}
+.ourValuesSection {
+  background-color: #111;
+  color: white;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.sectionLabel {
+  text-transform: uppercase;
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.sectionTitle {
+  font-size: 36px;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  border-top: 1px solid #333;
+  padding-top: 1.5rem;
+}
+
+.cardNumber {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.cardText {
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.6;
 }

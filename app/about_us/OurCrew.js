@@ -1,29 +1,43 @@
 import styles from "./page.module.css";
 
+const crewMembers = [
+  {
+    name: "Captain Sarah Vega",
+    description: "A former NASA astronaut with 15+ years of experience.",
+  },
+  {
+    name: "Dr. Leo Redding",
+    description: "Chief astrophysicist and researcher.",
+  },
+  {
+    name: "Chief Engineer Hana Lee",
+    description: "Aerospace engineer ensuring safety and innovation.",
+  },
+  {
+    name: "Mission Specialist Alex Santos",
+    description: "Science & tourism expert for smooth journeys.",
+  },
+  {
+    name: "Crew Member Maya Patel",
+    description: "Tech + customer service.",
+  },
+];
+
 const OurCrew = () => {
   return (
-    <>
-      <p>
+    <section className={styles.ourCrewSection}>
+      <p className={styles.introText}>
         Our crew is the heart and soul of Galactica...
-        <br />
-        <br />
-        <strong>Captain Sarah Vega:</strong> A former NASA astronaut with 15+
-        years of experience.
-        <br />
-        <br />
-        <strong>Dr. Leo Redding:</strong> Chief astrophysicist and researcher.
-        <br />
-        <br />
-        <strong>Chief Engineer Hana Lee:</strong> Aerospace engineer ensuring
-        safety and innovation.
-        <br />
-        <br />
-        <strong>Mission Specialist Alex Santos:</strong> Science & tourism
-        expert for smooth journeys.
-        <br />
-        <br />
-        <strong>Crew Member Maya Patel:</strong> Tech + customer service.
       </p>
+
+      <div className={styles.crewList}>
+        {crewMembers.map((member, index) => (
+          <div key={index} className={styles.crewMember}>
+            <strong>{member.name}:</strong> <span>{member.description}</span>
+          </div>
+        ))}
+      </div>
+
       <div className={styles.crewImagesRow}>
         <img
           className={styles.ourCrewImage}
@@ -46,7 +60,7 @@ const OurCrew = () => {
           alt="Victor Glover"
         />
       </div>
-    </>
+    </section>
   );
 };
 

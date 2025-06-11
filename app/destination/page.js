@@ -1,17 +1,13 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import styles from '@/components/destination/destination.module.css';
-import { AddWishlistItem } from '@/components/destination/AddWishlistItem';
+import styles from "@/components/destination/destination.module.css";
+import { AddWishlistItem } from "@/components/destination/AddWishlistItem";
 
 // TASK - React 1 week 2
 // Move this to its own file
-const PlanetWishlistItem = ({
-  name,
-  onRemove,
-  thumbnail,
-}) => {
+const PlanetWishlistItem = ({ name, onRemove, thumbnail }) => {
   return (
     <div className={styles.wishlistItem}>
       <img className={styles.wishlistItemThumbnail} src={thumbnail} alt="" />
@@ -19,22 +15,28 @@ const PlanetWishlistItem = ({
       <button onClick={onRemove}>remove</button>
     </div>
   );
-}
-
+};
 
 export const Destinations = () => {
-  const [selectedPlanets, onAddPlanet] = useState([]);
-
-  let isPlanetSelected = false;
-  let numberOfPlanets = 0;
+  const [selectedPlanets, setSelectedPlanets] = useState([]);
 
   const onAddOrRemovePlanet = (name, index) => {
     // TASK - React 1 week 2
     // Implement this function
     // If you press the "ADD PLANET" the selected planet should display "SELECTED"
     // And the counter should update, how many planets are selected (numberOfPlanets)
-    console.log(`You seleceted the following planet: ${name}, with the index of ${index}`);
-  }
+    console.log(
+      `You seleceted the following planet: ${name}, with the index of ${index}`
+    );
+    if (selectedPlanets.includes(name)) {
+      setSelectedPlanets(selectedPlanets.filter((planet) => planet !== name));
+    } else {
+      setSelectedPlanets([...selectedPlanets, name]);
+    }
+  };
+
+  const isPlanetSelected = (name) => selectedPlanets.includes(name);
+  const numberOfPlanets = selectedPlanets.length;
 
   return (
     <div className="fullBGpicture">
@@ -45,10 +47,13 @@ export const Destinations = () => {
           {/* TASK - React 1 week 2 */}
           {/* Display the number Of selected planets */}
           {/* Display the "no planets" message if it is empty! */}
-          <p>No planets in wishlist :(</p>
-          <p>You have {numberOfPlanets} in your wishlist</p>
+          {numberOfPlanets === 0 ? (
+            <p>No planets in wishlist :(</p>
+          ) : (
+            <p>You have {numberOfPlanets} in your wishlist</p>
+          )}
           <b>List coming soon after lesson 3!</b>
-          
+
           {/* STOP! - this is for week 3!*/}
           {/* TASK - React 1 week 3 */}
           {/* Import the AddWishlistItem react component */}
@@ -79,36 +84,95 @@ export const Destinations = () => {
           {/* Use the README.md file for descriptions */}
           {/* Create a <PlanetCard /> component, which accepts the following properties: */}
           {/* name, description, thumbnail, isSelected, onAddOrRemovePlanet */}
+
+          {/* Example for Europa */}
           <div className={styles.planetCard}>
-            <img className={styles.planetThumbnail} src="/destination/image-europa.png" alt="" />
+            <img
+              className={styles.planetThumbnail}
+              src="/destination/image-europa.png"
+              alt=""
+            />
             <div className={styles.planetDescription}>
-              <h2>EUROPA {isPlanetSelected ? "- SELECTED" : ""}</h2>
-              <p>Lorem ipsum...</p>
+              <h2>EUROPA {isPlanetSelected("europa") ? "- SELECTED" : ""}</h2>
+              <p>The smallest of the four Galilean moons orbiting Jupiter.</p>
             </div>
-            <button 
-              className="roundButton" 
-              onClick={() => onAddOrRemovePlanet('Pluto', 0)}
-            > 
-              {isPlanetSelected ? "REMOVE" : "ADD PLANET"}
+            <button
+              className="roundButton"
+              onClick={() => onAddOrRemovePlanet("europa", 0)}
+            >
+              {isPlanetSelected("europa") ? "REMOVE" : "ADD PLANET"}
             </button>
           </div>
+
+          {/* Example for Moon */}
           <div className={styles.planetCard}>
-            <img className={styles.planetThumbnail} src="/destination/image-europa.png" alt="" />
+            <img
+              className={styles.planetThumbnail}
+              src="/destination/image-moon.png"
+              alt=""
+            />
             <div className={styles.planetDescription}>
-              <h2>EUROPA {isPlanetSelected ? "- SELECTED" : ""}</h2>
-              <p>Lorem ipsum...</p>
+              <h2>MOON {isPlanetSelected("moon") ? "- SELECTED" : ""}</h2>
+              <p>
+                Earth’s only natural satellite and our nearest neighbor in
+                space.
+              </p>
             </div>
-            <button 
-              className="roundButton" 
-              onClick={() => onAddOrRemovePlanet('Pluto', 0)}
-            > 
-              {isPlanetSelected ? "REMOVE" : "ADD PLANET"}
+            <button
+              className="roundButton"
+              onClick={() => onAddOrRemovePlanet("moon", 1)}
+            >
+              {isPlanetSelected("moon") ? "REMOVE" : "ADD PLANET"}
+            </button>
+          </div>
+
+          {/* Example for Mars */}
+          <div className={styles.planetCard}>
+            <img
+              className={styles.planetThumbnail}
+              src="/destination/image-mars.png"
+              alt=""
+            />
+            <div className={styles.planetDescription}>
+              <h2>MARS {isPlanetSelected("mars") ? "- SELECTED" : ""}</h2>
+              <p>
+                The Red Planet with the tallest volcano and the deepest canyon
+                in the solar system.
+              </p>
+            </div>
+            <button
+              className="roundButton"
+              onClick={() => onAddOrRemovePlanet("mars", 2)}
+            >
+              {isPlanetSelected("mars") ? "REMOVE" : "ADD PLANET"}
+            </button>
+          </div>
+
+          {/* Example for Titan */}
+          <div className={styles.planetCard}>
+            <img
+              className={styles.planetThumbnail}
+              src="/destination/image-titan.png"
+              alt=""
+            />
+            <div className={styles.planetDescription}>
+              <h2>TITAN {isPlanetSelected("titan") ? "- SELECTED" : ""}</h2>
+              <p>
+                The largest moon of Saturn, known for its thick atmosphere and
+                lakes of methane.
+              </p>
+            </div>
+            <button
+              className="roundButton"
+              onClick={() => onAddOrRemovePlanet("titan", 3)}
+            >
+              {isPlanetSelected("titan") ? "REMOVE" : "ADD PLANET"}
             </button>
           </div>
         </section>
       </main>
     </div>
   );
-}
+};
 
 export default Destinations;
