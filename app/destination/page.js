@@ -4,18 +4,10 @@ import { useState } from "react";
 
 import styles from "@/components/destination/destination.module.css";
 import { AddWishlistItem } from "@/components/destination/AddWishlistItem";
+import { PlanetWishlistItem } from "@/components/destination/PlanetWishlistItem";
 
 // TASK - React 1 week 2
 // Move this to its own file
-const PlanetWishlistItem = ({ name, onRemove, thumbnail }) => {
-  return (
-    <div className={styles.wishlistItem}>
-      <img className={styles.wishlistItemThumbnail} src={thumbnail} alt="" />
-      <b>{name.toUpperCase()}</b>
-      <button onClick={onRemove}>remove</button>
-    </div>
-  );
-};
 
 export const Destinations = () => {
   const [selectedPlanets, setSelectedPlanets] = useState([]);
@@ -38,6 +30,10 @@ export const Destinations = () => {
   const isPlanetSelected = (name) => selectedPlanets.includes(name);
   const numberOfPlanets = selectedPlanets.length;
 
+  const removeFromWishlist = (name) => {
+    setSelectedPlanets(selectedPlanets.filter((planet) => planet !== name));
+  };
+
   return (
     <div className="fullBGpicture">
       <main className="mainContent">
@@ -57,25 +53,21 @@ export const Destinations = () => {
           {/* STOP! - this is for week 3!*/}
           {/* TASK - React 1 week 3 */}
           {/* Import the AddWishlistItem react component */}
-          {/* <AddWishlistItem /> */}
+          <AddWishlistItem />
           {/* TASK - React 1 week 3 */}
           {/* Convert the list, so it is using selectedPlanets.map() to display the items  */}
           {/* Implement the "REMOVE" function */}
-          {/* uncomment the following code snippet: */}
-          {/* 
           <h3>Your current wishlist</h3>
           <div className={styles.wishlistList}>
-            <PlanetWishlistItem 
-              name="europa"
-              onRemove={() => removeFromWishlist('europa')}
-              thumbnail="/destination/image-europa.png"
-            />
-            <PlanetWishlistItem 
-              name="europa"
-              onRemove={() => removeFromWishlist('europa')}
-              thumbnail="/destination/image-europa.png"
-            />
-          </div> */}
+            {selectedPlanets.map((planet) => (
+              <PlanetWishlistItem
+                key={planet}
+                name={planet}
+                onRemove={() => removeFromWishlist(planet)}
+                thumbnail={`/destination/image-${planet}.png`}
+              />
+            ))}
+          </div>
         </section>
         <section className="card">
           <h2>Possible destinations</h2>
@@ -164,14 +156,9 @@ export const Destinations = () => {
             </div>
             <button
               className="roundButton"
-              data-planet="europa"
-              onClick={(e) => {
-                const name = e.currentTarget.dataset.planet;
-                const index = 0; // if needed
-                onAddOrRemovePlanet(name, index);
-              }}
+              onClick={() => onAddOrRemovePlanet("titan", 3)}
             >
-              {isPlanetSelected("europa") ? "REMOVE" : "ADD PLANET"}
+              {isPlanetSelected("titan") ? "REMOVE" : "ADD PLANET"}
             </button>
           </div>
         </section>

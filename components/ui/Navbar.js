@@ -20,6 +20,9 @@ const navbarItems = [
   },
 ];
 
+// TASK - React 1 week 2
+// Create a <NavItem> component, which accepts the following:
+// title, link, isActive
 const NavItem = ({ title, link, isActive, index }) => (
   <li
     className={classNames(styles.navbarLinks, {
@@ -46,9 +49,8 @@ export const Navbar = () => {
       <nav className={styles.navbar}>
         <div className={styles.navbarBG} />
         <ul className={styles.navbarList}>
-          {/* TASK - React 1 week 2 */}
-          {/* Create a <NavItem> component, which accepts the following:  */}
-          {/* title, link, isActive  */}
+          {/* TASK - React 1 week 3 */}
+          {/* replace repeating content by using navbarItems.map(() => <NavLink />) */}
           {navbarItems.map((item, index) => (
             <NavItem
               key={item.link}
@@ -58,8 +60,6 @@ export const Navbar = () => {
               isActive={item.link === currentPath}
             />
           ))}
-          {/* TASK - React 1 week 3 */}
-          {/* replace repeating content by using navbarItems.map(() => <NavLink />) */}
         </ul>
       </nav>
     </header>
