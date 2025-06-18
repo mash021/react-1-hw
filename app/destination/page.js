@@ -164,9 +164,14 @@ export const Destinations = () => {
             </div>
             <button
               className="roundButton"
-              onClick={() => onAddOrRemovePlanet("titan", 3)}
+              data-planet="europa"
+              onClick={(e) => {
+                const name = e.currentTarget.dataset.planet;
+                const index = 0; // if needed
+                onAddOrRemovePlanet(name, index);
+              }}
             >
-              {isPlanetSelected("titan") ? "REMOVE" : "ADD PLANET"}
+              {isPlanetSelected("europa") ? "REMOVE" : "ADD PLANET"}
             </button>
           </div>
         </section>
